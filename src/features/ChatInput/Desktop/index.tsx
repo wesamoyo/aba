@@ -56,13 +56,13 @@ const DesktopChatInput = memo<DesktopChatInputProps>(
           }}
           placement="bottom"
           size={{ height: inputHeight, width: '100%' }}
-          style={{ zIndex: 10 }}
+          style={{ zIndex: 10, borderRadius: '20px' }} // Add borderRadius here
         >
           <Flexbox
             gap={8}
             height={'100%'}
             padding={'12px 0 16px'}
-            style={{ minHeight: CHAT_TEXTAREA_HEIGHT, position: 'relative' }}
+            style={{ minHeight: CHAT_TEXTAREA_HEIGHT, position: 'relative', borderRadius: '20px' }} // Add borderRadius here
           >
             <Head
               expand={expand}
