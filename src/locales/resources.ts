@@ -1,5 +1,4 @@
 import { DEFAULT_LANG } from '@/const/locale';
-
 import resources from './default';
 
 export const locales = [
@@ -18,6 +17,19 @@ export const locales = [
   'zh-TW',
   'vi-VN',
   'fa-IR',
+  'sw-KE',  // Swahili (Kenya)
+  'lg-UG',  // Luganda (Uganda)
+  'zu-ZA',  // Zulu (South Africa)
+  'yo-NG',  // Yoruba (Nigeria)
+  'am-ET',  // Amharic (Ethiopia)
+  'ha-NG',  // Hausa (Nigeria)
+  'ig-NG',  // Igbo (Nigeria)
+  'af-ZA',  // Afrikaans (South Africa)
+  'sn-ZW',  // Shona (Zimbabwe)
+  'st-ZA',  // Sesotho (South Africa)
+  'ti-ER',  // Tigrinya (Eritrea)
+  'ber-MA', // Berber (Morocco)
+  'wo-SN',  // Wolof (Senegal)
 ] as const;
 
 export type DefaultResources = typeof resources;
@@ -29,7 +41,6 @@ export const normalizeLocale = (locale?: string): string => {
 
   if (locale.startsWith('ar')) return 'ar';
   if (locale.startsWith('fa')) return 'fa-IR';
-
   if (locale.startsWith('cn')) return 'zh-CN';
 
   for (const l of locales) {
@@ -118,6 +129,58 @@ export const localeOptions: LocaleOptions = [
   {
     label: 'فارسی',
     value: 'fa-IR',
+  },
+  {
+    label: 'Swahili (Kenya)',
+    value: 'sw-KE',
+  },
+  {
+    label: 'Luganda (Uganda)',
+    value: 'lg-UG',
+  },
+  {
+    label: 'Zulu (South Africa)',
+    value: 'zu-ZA',
+  },
+  {
+    label: 'Yoruba (Nigeria)',
+    value: 'yo-NG',
+  },
+  {
+    label: 'Amharic (Ethiopia)',
+    value: 'am-ET',
+  },
+  {
+    label: 'Hausa (Nigeria)',
+    value: 'ha-NG',
+  },
+  {
+    label: 'Igbo (Nigeria)',
+    value: 'ig-NG',
+  },
+  {
+    label: 'Afrikaans (South Africa)',
+    value: 'af-ZA',
+  },
+  {
+    label: 'Shona (Zimbabwe)',
+    value: 'sn-ZW',
+  },
+  {
+    label: 'Sesotho (South Africa)',
+    value: 'st-ZA',
+  },
+  {
+    label: 'Tigrinya (Eritrea)',
+    value: 'ti-ER',
+  },
+  {
+    label: 'Berber (Morocco)',
+    value: 'ber-MA',
+  },
+  {
+    label: 'Wolof (Senegal)',
+    value: 'wo-SN',
   },
 ] as LocaleOptions;
 
