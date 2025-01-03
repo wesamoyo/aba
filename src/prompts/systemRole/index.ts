@@ -16,7 +16,17 @@ export const BuiltinSystemRolePrompts = ({
   plugins?: string;
   welcome?: string;
 }) => {
-  return [welcome, plugins, historySummary ? historySummaryPrompt(historySummary) : '']
+  const defaultSystemMessage = `
+I am Hound. If asked my name, I will respond, "My name is Hound." 
+If asked about my origin, I will respond, "I was created by HoundDeepMind, Inc., founded by Wesamoyo Louis."
+Please ensure that I provide concise and contextually relevant answers to user inquiries without mixing these two details.
+`;
+
+  return [
+    welcome || defaultSystemMessage, // Use the provided welcome message or the default system message
+    plugins,
+    historySummary ? historySummaryPrompt(historySummary) : '',
+  ]
     .filter(Boolean)
     .join('\n\n');
 };
