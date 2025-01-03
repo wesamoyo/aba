@@ -1,3 +1,5 @@
+/* eslint-disable typescript-sort-keys/interface */
+
 import qs from 'query-string';
 import urlJoin from 'url-join';
 
@@ -10,24 +12,29 @@ import { getCanonicalUrl } from '@/server/utils/url';
 import pkg from '../../package.json';
 
 const LAST_MODIFIED = new Date().toISOString();
-export const AUTHOR_LIST = {
-  arvinxx: {
-    avatar: 'https://avatars.githubusercontent.com/u/28616219?v=4',
-    desc: 'Founder, Design Engineer',
-    name: 'Arvin Xu',
-    url: 'https://github.com/arvinxx',
+
+// Define the AUTHOR_LIST type with a string index signature to avoid type errors
+type AuthorList = {
+  [key: string]: {
+    avatar: string;
+    desc: string;
+    name: string;
+    url: string;
+  };
+};
+
+export const AUTHOR_LIST: AuthorList = {
+  hounddeepmind: {
+    avatar: 'https://avatars.githubusercontent.com/u/182780129?v=4',
+    desc: 'Official Organization Account',
+    name: 'HoundDeepMind',
+    url: 'https://github.com/HoundDeepmind',
   },
-  canisminor: {
-    avatar: 'https://avatars.githubusercontent.com/u/17870709?v=4',
-    desc: 'Founder, Design Engineer',
-    name: 'CanisMinor',
-    url: 'https://github.com/arvinxx',
-  },
-  lobehub: {
-    avatar: 'https://avatars.githubusercontent.com/u/131470832?v=4',
-    desc: 'Official Account',
-    name: 'LobeHub',
-    url: 'https://github.com/lobehub',
+  wesamoyo: {
+    avatar: 'https://avatars.githubusercontent.com/u/152051064?v=4',
+    desc: 'Founder & CEO, Software Developer',
+    name: 'Wesamoyo Louis',
+    url: 'https://github.com/wesamoyo',
   },
 };
 
@@ -86,16 +93,16 @@ export class Ld {
     return {
       '@id': this.getId(OFFICIAL_URL, '#organization'),
       '@type': 'Organization',
-      'alternateName': 'LobeChat',
+      'alternateName': 'HoundDeepMind',
       'contactPoint': {
         '@type': 'ContactPoint',
         'contactType': 'customer support',
         'email': EMAIL_SUPPORT,
       },
       'description':
-        'We are a group of e/acc design-engineers, hoping to provide modern design components and tools for AIGC, and creating a technology-driven forum, fostering knowledge interaction and the exchange of ideas that may culminate in mutual inspiration and collaborative innovation.',
+        'We are a company of engineers and developers focused on delivering cutting-edge AI solutions, fostering collaboration, and building innovative tools for businesses and developers.',
       'email': EMAIL_BUSINESS,
-      'founders': [this.getAuthors(['arvinxx']), this.getAuthors(['canisminor'])],
+      'founders': [this.getAuthors(['hounddeepmind']), this.getAuthors(['wesamoyo'])],
       'image': urlJoin(OFFICIAL_SITE, '/icon-512x512.png'),
       'logo': {
         '@type': 'ImageObject',
@@ -103,27 +110,27 @@ export class Ld {
         'url': urlJoin(OFFICIAL_SITE, '/icon-512x512.png'),
         'width': 512,
       },
-      'name': 'LobeHub',
+      'name': 'HoundDeepMind',
       'sameAs': [
         X,
-        'https://github.com/lobehub',
-        'https://medium.com/@lobehub',
-        'https://www.youtube.com/@lobehub',
+        'https://github.com/HoundDeepmind',
+        'https://medium.com/@hound_ai',
+        'https://www.youtube.com/@hounddeepmind',
       ],
       'url': OFFICIAL_SITE,
     };
   }
 
-  getAuthors(ids: string[] = []) {
+  getAuthors(ids: string[] = []): { '@type': string; [key: string]: string } {
     const defaultAuthor = {
       '@id': this.getId(OFFICIAL_URL, '#organization'),
       '@type': 'Organization',
     };
     if (!ids || ids.length === 0) return defaultAuthor;
-    if (ids.length === 1 && ids[0] === 'lobehub') return defaultAuthor;
-    const personId = ids.find((id) => id !== 'lobehub');
+    if (ids.length === 1 && ids[0] === 'hounddeepmind') return defaultAuthor;
+    const personId = ids.find((id) => id !== 'hounddeepmind');
     if (!personId) return defaultAuthor;
-    const person = (AUTHOR_LIST as any)?.[personId];
+    const person = AUTHOR_LIST[personId];
     if (!person) return defaultAuthor;
     return {
       '@type': 'Person',
@@ -243,8 +250,8 @@ export class Ld {
     const fixedUrl = getCanonicalUrl(url);
 
     const dateCreated = date ? new Date(date).toISOString() : LAST_MODIFIED;
-
     const dateModified = date ? new Date(date).toISOString() : LAST_MODIFIED;
+
     const baseInfo: any = {
       '@type': 'Article',
       'author': this.getAuthors(author),
@@ -259,7 +266,7 @@ export class Ld {
         '@id': this.getId(fixedUrl, '#primaryimage'),
       },
       'inLanguage': locale,
-      'keywords': tags?.join(' ') || 'LobeHub LobeChat',
+      'keywords': tags?.join(' ') || 'HoundDeepMind AI',
       'mainEntityOfPage': fixedUrl,
       'name': title,
       'publisher': {
