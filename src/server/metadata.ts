@@ -10,7 +10,7 @@ import { formatDescLength, formatTitleLength } from '@/utils/genOG';
 
 export class Meta {
   public generate({
-    description = 'LobeChat offers you the best ChatGPT, OLLaMA, Gemini, Claude WebUI user experience',
+    description = 'HoundDeepmind offers you the best Business and individual AI-powered solutions driving efficiency and productivity up',
     title,
     image = OG_URL,
     url,
@@ -90,7 +90,7 @@ export class Meta {
       card: 'summary_large_image',
       description,
       images: [image],
-      site: '@lobehub',
+      site: '@hounddeepmind',
       title,
       url,
     };
@@ -122,7 +122,7 @@ export class Meta {
         },
       ],
       locale,
-      siteName: 'LobeChat',
+      siteName: 'HoundDeepmind',
       title,
       type,
       url,
